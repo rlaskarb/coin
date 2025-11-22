@@ -1,7 +1,6 @@
  import { Link } from "react-router-dom";
  import Header from '../../components/Header/Header';
  import './MainPage.css';
- import '../../App.css'
 
 function MainPage(){
     return (
