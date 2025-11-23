@@ -30,7 +30,7 @@ function MainPage() {
                 <div className="upbitimg">
                   <img src="/visualUPbit.svg" alt="upbit" />
                 </div>
-                <i class="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot"></i>
               </div>
             </div>
           </div>

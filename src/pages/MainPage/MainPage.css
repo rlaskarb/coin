@@ -1,18 +1,17 @@
 .wrapper {
   padding-top: var(--header-height);
   width: 85%;
-  margin: 0 auto;
+  margin: 15px auto 0;
 }
 
 .main-container {
   width: 99%;
   height: auto;
-  min-height: 100vh;
   margin: 0 auto;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 800px auto;
+  grid-auto-rows: auto;
   gap: 1%;
   grid-template-areas:
     "a a"
@@ -21,8 +20,6 @@
   .visual {
     grid-area: a;
     width: 100%;
-    height: 100%;
-    border: 1px solid blue;
 
     .visual-content {
       width: 100%;
@@ -31,12 +28,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2%;
-      border: 1px solid green;
 
       .visual-text {
-        width: 20%;
-
+        width: 30%;
+        padding-left: 50px;
         p {
           font-size: var(--font-30px);
           font-weight: 500;
@@ -86,8 +81,8 @@
         }
         .upbit-pin {
           position: absolute;
-          top: 32.3%;
-          right: 17%;
+          top: 31%;
+          right: 17.5%;
 
           display: flex;
           flex-direction: column;

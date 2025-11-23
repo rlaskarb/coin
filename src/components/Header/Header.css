@@ -23,11 +23,11 @@
       background-position: center;
       text-indent: -999px;
       overflow: hidden;
-      border-radius: 10px;
+      border-radius: 3px;
     }
 
     .gnb {
-      width: 30%;
+      width: 35%;
       ul {
         display: flex;
         gap: 10px;
