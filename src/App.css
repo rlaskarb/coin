@@ -1,4 +1,6 @@
 :root {
+  --header-height: 70px;
+
   --font-100px: 6.25rem;
   --font-90px: 5.63rem;
   --font-80px: 5rem;
@@ -19,13 +21,35 @@
   --font-16px: 1rem;
   --font-14px: 0.88rem;
 
-  --color-main: rgba(44, 0, 62, 1);
-  --color-point1: rgba(0, 174, 255, 1);
-  --color-point2: rgba(255, 0, 128, 1);
+  --color-main: rgba(190, 45, 60, 1);
+  --color-point1: rgba(0, 55, 150, 1);
+  --color-point2: rgba(0, 100, 225, 1);
   --color-sub1: rgba(255, 255, 255, 1);
-  --color-sub2: rgba(163, 163, 163, 1);
+  --color-sub2: rgba(245, 245, 245, 1);
   --main-font: rgba(255, 255, 255, 1);
   --sub-font: #333;
+}
+
+@keyframes smooth_bounce {
+  0% {
+    transform: scale(1.05) translateY(0);
+  }
+
+  25% {
+    transform: scale(1.025) translateY(-2px);
+  }
+
+  50% {
+    transform: scale(1.05) translateY(0);
+  }
+
+  75% {
+    transform: scale(1.025) translateY(-2px);
+  }
+
+  100% {
+    transform: scale(1.05) translateY(0);
+  }
 }
 
 * {
