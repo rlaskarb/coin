@@ -1,3 +1,33 @@
+:root {
+  --font-100px: 6.25rem;
+  --font-90px: 5.63rem;
+  --font-80px: 5rem;
+  --font-70px: 4.38rem;
+  --font-60px: 3.75rem;
+  --font-50px: 3.13rem;
+  --font-44px: 2.75rem;
+  --font-40px: 2.5rem;
+  --font-36px: 2.25rem;
+  --font-34px: 2.13rem;
+  --font-30px: 1.88rem;
+  --font-28px: 1.75rem;
+  --font-26px: 1.63rem;
+  --font-24px: 1.5rem;
+  --font-22px: 1.38rem;
+  --font-20px: 1.25rem;
+  --font-18px: 1.13rem;
+  --font-16px: 1rem;
+  --font-14px: 0.88rem;
+
+  --color-main: rgba(44, 0, 62, 1);
+  --color-point1: rgba(0, 174, 255, 1);
+  --color-point2: rgba(255, 0, 128, 1);
+  --color-sub1: rgba(255, 255, 255, 1);
+  --color-sub2: rgba(163, 163, 163, 1);
+  --main-font: rgba(255, 255, 255, 1);
+  --sub-font: #333;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,17 +45,18 @@ dl {
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
-	border: 0;
-	vertical-align: top;
-    max-width: 100%;
+  border: 0;
+  vertical-align: top;
+  max-width: 100%;
 }
 
-table , button{
+table,
+button {
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -46,12 +77,12 @@ label {
 
 /* 3. 공통 폰트 등 */
 html {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 body {
-	font-family: "Roboto", "Noto Sans KR", sans-serif;
-	color: #333;
-	font-weight: 400;
-    line-height: 1.5;
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  color: #333;
+  font-weight: 400;
+  line-height: 1.5;
 }

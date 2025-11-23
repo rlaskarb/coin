@@ -1,0 +1,54 @@
+.header-container {
+  width: 80%;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+
+  .logo {
+    width: 100%;
+    max-width: 150px;
+    height: 70px;
+    background: url(/upbit.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-indent: -999px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .gnb ul {
+    display: flex;
+    gap: 50px;
+    font-size: var(--font-24px);
+    font-weight: 400;
+
+    li:hover {
+      color: var(--color-point1);
+      font-weight: 800;
+    }
+  }
+
+  .util-menu {
+    margin-left: 500px;
+    display: flex;
+    gap: 30px;
+
+    button {
+      border: 3px solid var(--color-point1);
+      background: var(--color-point1);
+      font-size: var(--font-18px);
+      color: var(--main-font);
+      font-weight: 500;
+      border-radius: 5px;
+      padding: 2px 13px;
+    }
+
+    button:hover {
+      background: var(--color-sub1);
+      font-size: var(--font-20px);
+      color: var(--sub-font);
+    }
+  }
+}
