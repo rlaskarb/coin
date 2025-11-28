@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./CoinList.css";
+import styles from "./CoinList.module.css";
 
 function CoinList() {
   const [coins, setCoins] = useState([]);
@@ -32,12 +32,15 @@ function CoinList() {
         // 마켓 정보에 시세정보를 매칭
         const finalData = krwMarkets.map((market) => {
           const ticker = tickerData.find((t) => t.market === market.market);
+          const [currencey, symbol] = market.market.split("-");
+          const displayName = `${symbol}/${currencey}`;
           return {
             market: market.market,
+            name_for_view: displayName,
             korean_name: market.korean_name,
             trade_price: ticker.trade_price,
             signed_change_rate: ticker.signed_change_rate,
-            acc_trade_price_24th: ticker.acc_trade_price_24th,
+            acc_trade_price: ticker.acc_trade_price,
           };
         });
 
@@ -57,33 +60,50 @@ function CoinList() {
   };
 
   if (loading) return <div>로딩중</div>;
+
   return (
-    <div>
-      <div>
-        <div>한글명</div>
-        <div>현재가</div>
-        <div>전일 대비</div>
-        <div>거래대금</div>
+    <section className={styles.listContainer}>
+      <h2 className="blind">코인차트목록</h2>
+      <ul className={styles.listContent}>
+        <li>한글명</li>
+        <li>현재가</li>
+        <li>전일대비</li>
+        <li>거래대금</li>
+      </ul>
+
+      <div className={styles.coinScroll}>
+        {coins.map((coin) => (
+          <ul key={coin.market} className={styles.coinContent}>
+            {/* 한글명 & 심볼 */}
+            <li className={styles.symbol}>
+              <strong>{coin.korean_name}</strong>
+              <span>{coin.name_for_view}</span>
+            </li>
+            {/* 현재가(가격) */}
+            <li
+              className={`${styles.nowPrice} ${
+                coin.signed_change_rate > 0 ? "red" : "blue"
+              }`}
+            >
+              {formatNumber(coin.trade_price)}
+            </li>
+            {/* 전일 대비(퍼센트) */}
+            <li
+              className={`${styles.contrast} ${
+                coin.signed_change_rate > 0 ? "red" : "blue"
+              }`}
+            >
+              {(coin.signed_change_rate * 100).toFixed(2)}%
+            </li>
+            {/* 거래대금 (100만단위) */}
+            <li className={styles.transaction}>
+              {Math.floor(coin.acc_trade_price / 1000000).toLocaleString()}
+              백만
+            </li>
+          </ul>
+        ))}
       </div>
-      {coins.map((coin) => (
-        <div key={coin.market}>
-          {/* 한글명 & 심볼 */}
-          <div>
-            <strong>{coin.korean_name}</strong>
-            <div>{coin.market}</div>
-          </div>
-          {/* 현재가(가격) */}
-          <div>{formatNumber(coin.trade_price)}</div>
-          {/* 전일 대비(퍼센트) */}
-          <div>{(coin.signed_change_rate * 100).toFixed(2)}%</div>
-          {/* 거래대금 (100만단위) */}
-          <div>
-            {Math.floor(coin.acc_trade_price_24h / 1000000).toLocaleString()}
-            백만
-          </div>
-        </div>
-      ))}
-    </div>
+    </section>
   );
 }
 

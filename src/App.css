@@ -89,7 +89,6 @@ label {
   cursor: pointer;
 }
 
-/* 2. 숨김 처리용 클래스 (아까 말한 h2 가리기용) */
 .blind {
   position: absolute;
   width: 1px;
@@ -99,9 +98,9 @@ label {
   clip: rect(0, 0, 0, 0);
 }
 
-/* 3. 공통 폰트 등 */
 html {
   font-size: 16px;
+  background-color: var(--color-sub2);
 }
 
 body {
@@ -109,4 +108,10 @@ body {
   color: #333;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.wrapper {
+  width: 85%;
+  margin: calc(var(--header-height)) auto 0;
+  border: 1px solid red;
 }

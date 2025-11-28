@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-import "./Header.css";
+import styles from "./Header.module.css";
 
 const Header = () => {
   return (
-    <header className="header-container">
-      <div className="header-inner">
-        <div className="logo">
+    <header className={styles.headerContainer}>
+      <div className={styles.headerInner}>
+        <div className={styles.logo}>
           <Link to="/">
             <h1>upbit</h1>
           </Link>
         </div>
 
-        <nav className="gnb">
+        <nav className={styles.gnb}>
           <ul>
             <li>
               <Link to="/exchange">거래소</Link>
@@ -28,9 +28,9 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="util-menu">
-          <button className="btn-login">로그인</button>
-          <button className="btn-signup">회원가입</button>
+        <div className={styles.utilMenu}>
+          <button className={styles.btnLogin}>로그인</button>
+          <button className={styles.btnSignup}>회원가입</button>
         </div>
       </div>
     </header>

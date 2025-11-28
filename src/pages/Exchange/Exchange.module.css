@@ -1,0 +1,43 @@
+.mainContainer {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 450px;
+  grid-template-rows: 1.5fr 1fr;
+  grid-template-areas:
+    "a a d"
+    "b c d";
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--color-sub2);
+
+  > section {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-sub1);
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.03);
+  }
+
+  .chartArea {
+    grid-area: a;
+    width: 100%;
+    height: 100%;
+    border: 2px solid orange;
+  }
+
+  .hogaBox {
+    grid-area: b;
+    width: 100%;
+    height: 100%;
+    border: 2px solid green;
+  }
+
+  .orderBox {
+    grid-area: c;
+    width: 100%;
+    height: 100%;
+    border: 2px solid purple;
+  }
+}
