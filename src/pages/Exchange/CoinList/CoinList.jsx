@@ -82,7 +82,7 @@ function CoinList() {
             {/* 현재가(가격) */}
             <li
               className={`${styles.nowPrice} ${
-                coin.signed_change_rate > 0 ? "red" : "blue"
+                coin.signed_change_rate > 0 ? `${styles.red}` : `${styles.blue}`
               }`}
             >
               {formatNumber(coin.trade_price)}
@@ -90,7 +90,7 @@ function CoinList() {
             {/* 전일 대비(퍼센트) */}
             <li
               className={`${styles.contrast} ${
-                coin.signed_change_rate > 0 ? "red" : "blue"
+                coin.signed_change_rate > 0 ? `${styles.red}` : `${styles.blue}`
               }`}
             >
               {(coin.signed_change_rate * 100).toFixed(2)}%
