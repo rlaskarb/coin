@@ -4,6 +4,10 @@ import styles from "./CoinList.module.css";
 function CoinList() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortConfig, setSortConfig] = useState({
+    key: "acc_trade_price",
+    direction: "desc",
+  });
 
   useEffect(() => {
     const fetchMarkeDate = async () => {
@@ -54,9 +58,40 @@ function CoinList() {
     fetchMarkeDate();
   }, []);
 
+  // 헤더 클릭시 실행될 함수
+  const handleSort = (key) => {
+    let direction = "desc"; // 내림차순
+
+    if (sortConfig.key === key && sortConfig.direction === "desc") {
+      direction = "asc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // 실제 정렬된 데이터 만들기
+  const sortedCoins = [...coins].sort((a, b) => {
+    // a와 b를 비교해서 순서를 바꿈
+    const aValue = a[sortConfig.key];
+    const bValue = b[sortConfig.key];
+
+    if (sortConfig.key === "korean_name") {
+      return sortConfig.direction === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    } else {
+      return sortConfig.direction === "asc" ? aValue - bValue : bValue - aValue;
+    }
+  });
+
   // 숫자에 콤마 찍어주는 함수
   const formatNumber = (num) => {
     return new Intl.NumberFormat("ko-KR").format(num);
+  };
+
+  //정렬 화살표 아이콘 표시 헬퍼
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) return null;
+    return sortConfig.direction === "asc" ? "▲" : "▼";
   };
 
   if (loading) return <div>로딩중</div>;
@@ -64,15 +99,24 @@ function CoinList() {
   return (
     <section className={styles.listContainer}>
       <h2 className="blind">코인차트목록</h2>
+
       <ul className={styles.listContent}>
-        <li>한글명</li>
-        <li>현재가</li>
-        <li>전일대비</li>
-        <li>거래대금</li>
+        <li onClick={() => handleSort("korean_name")}>
+          한글명 <span>{getSortIcon("korean_name")}</span>
+        </li>
+        <li onClick={() => handleSort("trade_price")}>
+          현재가 <span>{getSortIcon("trade_price")}</span>
+        </li>
+        <li onClick={() => handleSort("signed_change_rate")}>
+          전일대비 <span>{getSortIcon("signed_change_rate")}</span>
+        </li>
+        <li onClick={() => handleSort("acc_trade_price")}>
+          거래대금 <span>{getSortIcon("acc_trade_price")}</span>
+        </li>
       </ul>
 
       <div className={styles.coinScroll}>
-        {coins.map((coin) => (
+        {sortedCoins.map((coin) => (
           <ul key={coin.market} className={styles.coinContent}>
             {/* 한글명 & 심볼 */}
             <li className={styles.symbol}>

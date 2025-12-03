@@ -21,21 +21,22 @@
       padding: 10px 5px;
     }
 
-    li:firstchild {
-      flex: 1.7;
+    li:nth-child(1) {
+      flex: 0.6;
+      flex-wrap: wrap;
       justify-content: flex-start;
       padding-left: 15px;
     }
 
     li:nth-child(2),
     li:nth-child(3) {
-      flex: 0.6;
+      flex: 0.4;
       justify-content: flex-end;
       text-align: right;
     }
 
     li:nth-child(4) {
-      flex: 1;
+      flex: 0.5;
       justify-content: flex-end;
       text-align: right;
     }
