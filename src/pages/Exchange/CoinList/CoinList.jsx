@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 import styles from "./CoinList.module.css";
 
 function CoinList() {
+  //코인 데이터 담을 그릇
   const [coins, setCoins] = useState([]);
+  //로딩중인지 체크하는 상태
   const [loading, setLoading] = useState(true);
+  //정렬 상태
   const [sortConfig, setSortConfig] = useState({
     key: "acc_trade_price",
     direction: "desc",
   });
+  // 검색어 상태관리
+  const [searchTerm, setSearchTerm] = useState("");
+  // 모달창 열림/닫힘 상태관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchMarkeDate = async () => {
@@ -58,7 +65,16 @@ function CoinList() {
     fetchMarkeDate();
   }, []);
 
-  // 헤더 클릭시 실행될 함수
+  //검색어가 바뀌면 실행되는 함수
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value); // 입력한 글자상태로 업데이트
+  };
+  // 로그인이 필요한 버튼 클릭시 실행
+  const handleLoginRequired = () => {
+    setIsModalOpen(true);
+  };
+
+  // 정렬 함수
   const handleSort = (key) => {
     let direction = "desc"; // 내림차순
 
@@ -88,17 +104,55 @@ function CoinList() {
     return new Intl.NumberFormat("ko-KR").format(num);
   };
 
-  //정렬 화살표 아이콘 표시 헬퍼
+  //정렬 화살표 아이콘 표시
   const getSortIcon = (key) => {
     if (sortConfig.key !== key) return null;
     return sortConfig.direction === "asc" ? "▲" : "▼";
   };
+
+  // 검색어 필터링하기
+  // 원본에서 검색어로 거른다
+  const filteredCoins = coins.filter((coin) => {
+    //한글명이나 검색어가 포함되어 있는지 확인
+    const nameMatch = coin.korean_name.includes(searchTerm);
+    const symbolMatch = coin.name_for_view
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return nameMatch || symbolMatch;
+  });
+
+  //걸러진 목록을 정렬합니다.
+  const finalCoins = [...filteredCoins].sort((a, b) => {
+    const aValue = a[sortConfig.key];
+    const bValue = b[sortConfig.key];
+    if (sortConfig.key === "korean_name") {
+      return sortConfig.direction === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    } else {
+      return sortConfig.direction === "asc" ? aValue - bValue : bValue - aValue;
+    }
+  });
 
   if (loading) return <div>로딩중</div>;
 
   return (
     <section className={styles.listContainer}>
       <h2 className="blind">코인차트목록</h2>
+
+      <div className={styles.searchBox}>
+        <label htmlFor="coinSearch" className="blind">
+          코인명 / 심볼검색
+        </label>
+        <input
+          type="text"
+          id="coinSearch"
+          placeholder="코인명/심볼검색"
+          value={searchTerm}
+          onChange={handleSearch} // 글자마자 실행
+        />
+        <i className="fa-solid fa-magnifying-glass"></i>
+      </div>
 
       <ul className={styles.listContent}>
         <li onClick={() => handleSort("korean_name")}>
