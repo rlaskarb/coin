@@ -84,21 +84,6 @@ function CoinList() {
     setSortConfig({ key, direction });
   };
 
-  // 실제 정렬된 데이터 만들기
-  const sortedCoins = [...coins].sort((a, b) => {
-    // a와 b를 비교해서 순서를 바꿈
-    const aValue = a[sortConfig.key];
-    const bValue = b[sortConfig.key];
-
-    if (sortConfig.key === "korean_name") {
-      return sortConfig.direction === "asc"
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue);
-    } else {
-      return sortConfig.direction === "asc" ? aValue - bValue : bValue - aValue;
-    }
-  });
-
   // 숫자에 콤마 찍어주는 함수
   const formatNumber = (num) => {
     return new Intl.NumberFormat("ko-KR").format(num);
@@ -154,6 +139,12 @@ function CoinList() {
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
 
+      <div className={styles.tabMenu}>
+        <button className={styles.active}>원화</button>
+        <button onClick={handleLoginRequired}>보유</button>
+        <button onClick={handleLoginRequired}>관심</button>
+      </div>
+
       <ul className={styles.listContent}>
         <li onClick={() => handleSort("korean_name")}>
           한글명 <span>{getSortIcon("korean_name")}</span>
@@ -169,9 +160,20 @@ function CoinList() {
         </li>
       </ul>
 
+      {/* 코인 리스트 영역 */}
       <div className={styles.coinScroll}>
-        {sortedCoins.map((coin) => (
+        {finalCoins.map((coin) => (
           <ul key={coin.market} className={styles.coinContent}>
+            {/* 별표 아이콘 (클릭시 로그인 모달) */}
+            <li>
+              <i
+                className={`fa-regular fa-star ${styles.starIcon}`}
+                onClick={(e) => {
+                  e.stopPropagation(); // 부모클릭방지
+                  handleLoginRequired();
+                }}
+              ></i>
+            </li>
             {/* 한글명 & 심볼 */}
             <li className={styles.symbol}>
               <strong>{coin.korean_name}</strong>
@@ -201,6 +203,20 @@ function CoinList() {
           </ul>
         ))}
       </div>
+      {/* 로그인창으로 이동하는 모달창 조건부렌더링 */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalBox}>
+            <p>
+              로그인이 필요한 서비스입니다. <br /> 로그인 하시겠습니까?
+            </p>
+            <div className={styles.modalBtns}>
+              <button onClick={() => alert("나중에 만들께요")}>확인</button>
+              <button onClick={() => setIsModalOpen(false)}>취소</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
