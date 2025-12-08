@@ -27,7 +27,7 @@
     }
 
     .gnb {
-      width: 35%;
+      width: 40%;
       ul {
         display: flex;
         gap: 10px;

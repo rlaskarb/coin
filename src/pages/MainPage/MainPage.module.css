@@ -66,9 +66,9 @@
           gap: 30px;
 
           .textbtn {
-            border: 2px solid transparent;
+            border: 1px solid transparent;
             color: var(--color-sub1);
-            padding: 7px 20px;
+            padding: 10px 20px;
             font-size: var(--font-22px);
             font-weight: 500;
             border-radius: 7px;
@@ -76,6 +76,7 @@
           }
           .btn1 {
             background-color: var(--color-point1);
+            padding: 15px 20px;
           }
           .btn2 {
             background-color: var(--color-point2);

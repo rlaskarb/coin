@@ -9,7 +9,7 @@ const Header = () => {
           <Link to="/">
             <h1>upbit</h1>
           </Link>
-        </div>
+        </div> 
 
         <nav className={styles.gnb}>
           <ul>

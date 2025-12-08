@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./CoinList.module.css";
 
-function CoinList() {
+function CoinList({ onCoinClick }) {
   //코인 데이터 담을 그릇
   const [coins, setCoins] = useState([]);
   //로딩중인지 체크하는 상태
@@ -163,7 +163,11 @@ function CoinList() {
       {/* 코인 리스트 영역 */}
       <div className={styles.coinScroll}>
         {finalCoins.map((coin) => (
-          <ul key={coin.market} className={styles.coinContent}>
+          <ul
+            key={coin.market}
+            className={styles.coinContent}
+            onClick={() => onCoinClick(coin.market)}
+          >
             {/* 별표 아이콘 (클릭시 로그인 모달) */}
             <li>
               <i
