@@ -12,7 +12,7 @@ function Chart({ coinCode }) {
     //KRW-BCT -> ["KRW","BTC"]로 쪼갬
     const [currencey, symbol] = coinCode.split("-");
     // 합쳐서 "UPBIT:BTCKRW"로 만듦
-    return `UPBIT:${symbol} ${currencey}`;
+    return `UPBIT:${symbol}${currencey}`;
   };
 
   return (
