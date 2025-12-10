@@ -22,7 +22,7 @@ function CoinInfo({ coinCode }) {
     () => {
       clearInterval(interval);
     },
-    [coinCode] //coinCode 가 바뀔 때마다 실행
+    [coinCode] //coinCode 가 바뀔 때마다 실행하기
   );
 
   if (!info) return <div className={styles.loading}>로딩중...</div>;
