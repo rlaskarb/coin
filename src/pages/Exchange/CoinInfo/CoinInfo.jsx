@@ -39,5 +39,6 @@ function CoinInfo({ coinCode }) {
   <div className={styles.infoContainer}>
     {/* 코인이름/ 탭 */}
     <div></div>
+    <div></div>
   </div>;
 }
