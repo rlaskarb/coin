@@ -25,4 +25,26 @@ function CoinInfo({ coinCode }) {
     const interval = setInterval(fetchTicker, 10000);
     return () => clearInterval(interval);
   }, [coinCode]);
+
+  if (!info) return <div className={styles.loading}>로딩중...</div>;
+
+  //색상결정
+  const priceColor =
+    info.signed_change_rate > 0
+      ? styles.red
+      : info.signed < 0
+      ? styles.blue
+      : "";
+
+  return (
+    <div className={styles.infoContainer}>
+      {/* 헤더 (코인 이름/ 탭) */}
+      <div className={styles.infoHeader}>
+        <div className={styles.title}>
+          {/* 코인이름은 코드로 보여주고 나중에 한글명 넘겨받기로 고도화 가능 */}
+          <h2>{coinCode}</h2>
+        </div>
+      </div>
+    </div>
+  );
 }
