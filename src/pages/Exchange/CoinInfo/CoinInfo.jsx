@@ -41,7 +41,6 @@ function CoinInfo({ coinCode }) {
       {/* 헤더 (코인 이름/ 탭) */}
       <div className={styles.infoHeader}>
         <div className={styles.title}>
-          {/* 코인이름은 코드로 보여주고 나중에 한글명 넘겨받기로 고도화 가능 */}
           <h2>{coinCode}</h2>
         </div>
       </div>
