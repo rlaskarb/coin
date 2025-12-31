@@ -43,7 +43,53 @@ function CoinInfo({ coinCode }) {
         <div className={styles.title}>
           <h2>{coinCode}</h2>
         </div>
+        <div className={styles.tabs}>
+          <button className={styles.activeTab}>시세</button>
+          <button>정보</button>
+          <button>마켓뎁스</button>
+        </div>
+      </div>
+      {/* 가격 상세 데이터 */}
+      <div className={styles.infoBody}>
+        {/* 왼쪽: 현재가  */}
+        <div className={styles.mainPrice}>
+          <div className={`${styles.price} ${priceColor}`}>
+            {info.trade_price.toLocaleString()} <span>KRW</span>
+          </div>
+          <div className={`${styles.change}${priceColor}`}>
+            전일대비 : {(info.signed_change_rate * 100).toFixed(2)}% (
+            {info.sigend_change_price.toLocaleString()}원)
+          </div>
+        </div>
+        {/* 오른쪽 고가/저가/거래대금 */}
+        <div className={styles.subInfo}>
+          <div className={styles.infoItem}>
+            <span>고가</span>
+            <span className={styles.red}>
+              {info.high_price.toLocaleString()}
+            </span>
+          </div>
+          <div className={styles.infoItem}>
+            <span>거래량(24H)</span>
+            <span>{Math.floor(info.acc_trade_volume_24).toLocaleString()}</span>
+          </div>
+          <div className={styles.infoItem}>
+            <span>저가</span>
+            <span className={styles.blue}>
+              {info.low_price.toLocaleString()}
+            </span>
+          </div>
+          <div className={styles.infoItem}>
+            <span>거래대금(24H)</span>
+            <span>
+              {Math.floor(info.acc_trade_volume_24 / 1000000).toLocaleString()}{" "}
+              백만
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
+export default CoinInfo;

@@ -20,7 +20,12 @@ function Exchange() {
       <main className={styles.mainContainer}>
         <section className={styles.chartArea}>
           <h2 className="blind">차트 영역</h2>
+          {/* 정보창 */}
           <Chart coinCode={selectedCoin} />
+          {/* 차트 */}
+          <div className={styles}>
+            <Chart coinCode={selectedCoin} />
+          </div>
         </section>
         <section className={styles.hogaBox}>
           <h2>호가창 영역</h2>
