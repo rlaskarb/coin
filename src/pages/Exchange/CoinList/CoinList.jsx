@@ -166,7 +166,7 @@ function CoinList({ onCoinClick }) {
           <ul
             key={coin.market}
             className={styles.coinContent}
-            onClick={() => onCoinClick(coin.market)}
+            onClick={() => onCoinClick(coin.market, coin.korean_name)}
           >
             {/* 별표 아이콘 (클릭시 로그인 모달) */}
             <li>

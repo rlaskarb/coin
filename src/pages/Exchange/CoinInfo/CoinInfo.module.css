@@ -1,3 +1,100 @@
-* {
-  margin: 0;
+.infoContainer {
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  padding: 15px 20px;
+  height: 140px; /* 높이 고정 (차트랑 나눠쓰기 위해) */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 헤더 & 탭 */
+.infoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.codeStr {
+  font-size: 13px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  margin-left: 15px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  color: #999;
+}
+
+.tabs .activeTab {
+  color: #0062df;
+  border-bottom: 2px solid #0062df;
+  font-weight: bold;
+}
+
+/* 하단 데이터 영역 */
+.infoBody {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainPrice .price {
+  font-size: 32px;
+  font-weight: bold;
+}
+.mainPrice .price span {
+  font-size: 14px;
+  color: #333;
+  margin-left: 5px;
+}
+.mainPrice .change {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* 오른쪽 그리드 정보 */
+.subInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2칸씩 */
+  gap: 5px 30px; /* 세로간격 5, 가로간격 30 */
+  font-size: 13px;
+  text-align: right;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.infoItem span:first-child {
+  color: #999; /* 라벨 색상 */
+  margin-right: 10px;
+}
+
+/* 색상 유틸 */
+.red {
+  color: #d60000;
+}
+.blue {
+  color: #0051c7;
 }

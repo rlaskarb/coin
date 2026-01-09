@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./CoinInfo.module.css";
 
-function CoinInfo({ coinCode }) {
+function CoinInfo({ coinCode, koreanName }) {
   const [info, setInfo] = useState(null);
 
   useEffect(() => {
@@ -21,8 +21,8 @@ function CoinInfo({ coinCode }) {
 
     fetchTicker();
 
-    //1분마다 갱신
-    const interval = setInterval(fetchTicker, 10000);
+    //100초마다 갱신
+    const interval = setInterval(fetchTicker, 100000);
     return () => clearInterval(interval);
   }, [coinCode]);
 
@@ -32,7 +32,7 @@ function CoinInfo({ coinCode }) {
   const priceColor =
     info.signed_change_rate > 0
       ? styles.red
-      : info.signed < 0
+      : info.signed_change_rate < 0
       ? styles.blue
       : "";
 
@@ -41,7 +41,8 @@ function CoinInfo({ coinCode }) {
       {/* 헤더 (코인 이름/ 탭) */}
       <div className={styles.infoHeader}>
         <div className={styles.title}>
-          <h2>{coinCode}</h2>
+          <h2>{koreanName}</h2>
+          <span className={styles.codeStr}>{coinCode}</span>
         </div>
         <div className={styles.tabs}>
           <button className={styles.activeTab}>시세</button>
@@ -56,9 +57,9 @@ function CoinInfo({ coinCode }) {
           <div className={`${styles.price} ${priceColor}`}>
             {info.trade_price.toLocaleString()} <span>KRW</span>
           </div>
-          <div className={`${styles.change}${priceColor}`}>
+          <div className={`${styles.change} ${priceColor}`}>
             전일대비 : {(info.signed_change_rate * 100).toFixed(2)}% (
-            {info.sigend_change_price.toLocaleString()}원)
+            {info.signed_change_price.toLocaleString()}원)
           </div>
         </div>
         {/* 오른쪽 고가/저가/거래대금 */}
@@ -71,7 +72,9 @@ function CoinInfo({ coinCode }) {
           </div>
           <div className={styles.infoItem}>
             <span>거래량(24H)</span>
-            <span>{Math.floor(info.acc_trade_volume_24).toLocaleString()}</span>
+            <span>
+              {Math.floor(info.acc_trade_volume_24h).toLocaleString()}
+            </span>
           </div>
           <div className={styles.infoItem}>
             <span>저가</span>
@@ -82,7 +85,7 @@ function CoinInfo({ coinCode }) {
           <div className={styles.infoItem}>
             <span>거래대금(24H)</span>
             <span>
-              {Math.floor(info.acc_trade_volume_24 / 1000000).toLocaleString()}{" "}
+              {Math.floor(info.acc_trade_price_24h / 1000000).toLocaleString()}{" "}
               백만
             </span>
           </div>
